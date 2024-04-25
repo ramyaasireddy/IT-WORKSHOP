@@ -1,0 +1,222 @@
+                                              Grep command in Unix:
+                                              
+user@ramya:~$ grep "^unix" geekfile.txt
+unix is great os. unix is opensource. unix is free os.
+unix linux which one you choose.
+unix is easy to learn.unix is a multiuser os.Learn unix .unix is a
+ 
+** 1.-c: This prints only a count of the lines that match a pattern
+user@ramya:~$ grep -c "unix" geekfile.txt
+3
+
+** 2.-h: Display the matched lines, but do not display the filenames.
+user@ramya:~$ grep -h "unix" geekfile.txt
+unix is great os. unix is opensource. unix is free os.
+unix linux which one you choose.
+unix is easy to learn.unix is a multiuser os.Learn unix .unix is a
+
+** 3.-l: Displays list of a filenames only.
+user@ramya:~$ grep -l "unix" geekfile.txt
+geekfile.txt
+
+** 4.-n: Display the matched lines and their line numbers.
+user@ramya:~$ grep -n "unix" geekfile.txt
+1:unix is great os. unix is opensource. unix is free os.
+3:unix linux which one you choose.
+4:unix is easy to learn.unix is a multiuser os.Learn unix .unix is a
+cat>geekfile.txt
+unix is great os. unix is opensource. unix is free os.
+learn operating system.
+unix linux which one you choose.
+unix is easy to learn.unix is a multiuser os.Learn unix .unix is a
+powerful. 
+
+** 5.-v: This prints out all the lines that do not matches the pattern
+user@ramya:~$ grep -v "unix" geekfile.txt
+learn operating system.
+powerful.
+
+** 6.-e : Specifies expression with this option. Can use multiple times.
+user@ramya:~$ grep -e "unix" geekfile.txt
+unix is great os. unix is opensource. unix is free os.
+unix linux which one you choose.
+unix is easy to learn.unix is a multiuser os.Learn unix .unix is a
+
+** 7.-o :Print only the matched parts of a matching line, with each such part on aseparate output line.
+user@ramya:~$ grep -o "unix" geekfile.txt
+unix
+unix
+unix
+unix
+unix
+unix
+unix
+unix
+                                    Sed Command in Unix:
+                                    
+** 8.Replacing or substituting string
+user@ramya:~$ sed 's/unix/linux/' geekfile.txt
+linux is great os. unix is opensource. unix is free os.
+learn operating system.
+linux linux which one you choose.
+linux is easy to learn.unix is a multiuser os.Learn unix .unix is a
+
+** 9. Replacing the nth occurrence of a pattern in a line :
+
+user@ramya:~$ sed 's/l/#/1' geekfile.txt
+unix is great os. unix is opensource. unix is free os.
+#earn operating system.
+unix #inux which one you choose.
+unix is easy to #earn.unix is a multiuser os.Learn unix .unix is a
+powerfu#. 
+
+user@ramya:~$ sed 's/choose/CHOOSE/g' geekfile.txt
+unix is great os. unix is opensource. unix is free os.
+learn operating system.
+unix linux which one you CHOOSE.
+unix is easy to learn.unix is a multiuser os.Learn unix .unix is a
+
+// removes 2nd and 3rd lines
+user@ramya:~$ sed '2,3d' geekfile.txt
+ unix is great os. unix is opensource. unix is free os.
+unix is easy to learn.unix is a multiuser os.Learn unix .unix is a
+powerful. 
+
+                                             Sort Command:
+                                             
+user@ramya:~$ cat>monthsfile.txt
+april
+march
+december
+february
+september
+user@ramya:~$ cat>numberfile.txt
+21
+1
+67
+4
+98
+
+** 10.sort: sort the lines of a text file or input stream.
+user@ramya:~$ sort monthsfile.txt
+april
+december
+february
+march
+september
+
+
+//-o: Specifies an output file for the sorted data.Functionally equivalent to redirecting output to a file.
+user@ramya:~$ sort -o monthsfile.txt
+april
+december
+february
+march
+september
+//-r: Sorts data in reverse order (descending).
+user@ramya:~$ sort -r monthsfile.txt
+april
+december
+february
+march
+september
+
+//-n: Sorts a file numerically (interprets data as numbers).
+user@ramya:~$ sort -n numberfile.txt
+1
+4
+21
+67
+98
+
+
+
+//-nr: Sorts a file with numeric data in reverse order.
+user@ramya:~$ sort -nr numberfile.txt
+98
+67
+21
+4
+1
+
+
+//-k: Sorts a table based on a specific column number.
+user@ramya:~$ sort -k tablefile.txt
+
+//-c: Checks if the file is already sorted and reports any disorder.
+user@ramya:~$ sort -c numberfile.txt
+sort: numberfile.txt:3: disorder: 12
+
+//-u: Sorts and removes duplicate lines, providing a unique sorted list.(sorted for only string values)
+user@ramya:~$ sort -u numberfile.txt
+1
+21
+4
+67
+98
+
+
+//-M: Sorts by month names.
+user@ramya:~$ sort -M monthsfile.txt
+april
+december
+february
+march
+september
+                                            AWK command in Unix:
+                                            
+          
+user@ramya:~$ cat>employee.txt
+ajay manager account 35000
+sunil clerk account 30000
+varun manager sales 90000
+ 
+//Print the lines which match the given pattern.
+user@ramya:~$ awk '/manager/{print}' employee.txt
+ajay manager account 35000
+varun manager sales 90000
+
+//Splitting a Line Into Fields. 
+user@ramya:~$ awk '{print $1,$4}' employee.txt
+ajay 35000
+sunil 30000
+varun 90000
+
+//Display Line Number of the sentences
+user@ramya:~$ awk '{print NR,$o}' employee.txt
+1 ajay manager account 35000
+2 sunil clerk account 30000
+3 varun manager sales 90000
+ 
+// To return the second column/item from employee.txt:
+user@ramya:~$ awk '{print $2}' employee.txt
+manager
+clerk
+manager
+ 
+// To count the lines in a file:
+user@ramya:~$ awk '{print NR}' employee.txt
+1
+2
+3
+ 
+                                                  shutdown command:
+                                                  
+   
+shutdown [options] [time] [message]
+user@ramya:~$ shutdown -r +5 reboot
+
+//-H : Requests that the system be halted after it has been brought down.
+user@ramya:~$ shutdown -H
+
+//-P : Requests that the system be powered off after it has been brought down.
+user@ramya:~$ shutdown -P
+
+//r : Requests that the system be rebooted after it has been brought down.
+user@ramya:~$ shutdown -r now
+user@ramya:~$ shutdown -r +5
+//-c : Cancels a running shutdown. TIME is not specified with this option, the first argument is MESSAGE.
+user@ramya:~$ sudo shutdown -c
+ 
+
+ 
